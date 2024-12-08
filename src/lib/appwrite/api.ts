@@ -1,7 +1,6 @@
 import { ID, ImageGravity, Query } from "appwrite";
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
-import { data } from "react-router-dom";
 
 // POST /account to AUTH
 export async function createUserAccount(user: INewUser) {
@@ -298,7 +297,11 @@ export async function updatePost(post: IUpdatePost) {
         throw Error;
       }
 
-      image = { ...image, imageUrl: photoUrl, imageId: uploadedFile.$id };
+      image = {
+        ...image,
+        imageUrl: new URL(photoUrl),
+        imageId: uploadedFile.$id,
+      };
     }
 
     // convert tags into array

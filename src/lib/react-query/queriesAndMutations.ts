@@ -105,7 +105,7 @@ export const useSavedPosts = () => {
   return useMutation({
     mutationFn: ({ postId, userId }: { postId: string; userId: string }) =>
       savePost(postId, userId),
-    onSuccess: (data) => {
+    onSuccess: () => {
       QueryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
       });
@@ -125,7 +125,7 @@ export const useDeleteSavedPosts = () => {
 
   return useMutation({
     mutationFn: (savedRecordId: string) => deleteSavedPost(savedRecordId),
-    onSuccess: (data) => {
+    onSuccess: () => {
       QueryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
       });
@@ -195,7 +195,7 @@ export const useGetPosts = () => {
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
     queryFn: getInfinitePosts,
     getNextPageParam: (lastPage) => {
-      if (lastPage && lastPage.documents.length === 0) {
+      if (!lastPage || lastPage.documents.length === 0) {
         return null;
       }
 

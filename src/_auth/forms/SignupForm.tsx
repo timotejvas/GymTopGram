@@ -27,15 +27,14 @@ const SignupForm = () => {
   const { toast } = useToast();
 
   // CONTEXT HOOK
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  const { checkAuthUser } = useUserContext();
 
   // MUTATION HOOK - CREATE
   const { mutateAsync: createUserAccount, isPending: isCreatingUser } =
     useCreateUserAccount();
 
   // MUTATION HOOK - CREATE SESSION
-  const { mutateAsync: signInAccount, isPending: isSigningIn } =
-    useSignInAccount();
+  const { mutateAsync: signInAccount } = useSignInAccount();
 
   const navigate = useNavigate();
 

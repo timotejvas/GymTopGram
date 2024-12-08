@@ -24,7 +24,7 @@ const SigninForm = () => {
   const { toast } = useToast();
 
   // CONTEXT HOOK
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  const { checkAuthUser } = useUserContext();
 
   // MUTATION HOOK - CREATE SESSION
   const { mutateAsync: signInAccount, isPending: isSigningIn } =

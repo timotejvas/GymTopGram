@@ -19,7 +19,12 @@ const PostDetails = () => {
   const navigate = useNavigate();
 
   const handleDeletePost = () => {
-    deletePost({ postId: id, imageId: post?.imageId, userId: user.id });
+    if (!id || !post) {
+      console.error("Post ID or Post data is missing.");
+      return;
+    }
+
+    deletePost({ postId: id, imageId: post.imageId, userId: user.id });
     navigate(-1);
   };
 
@@ -46,7 +51,7 @@ const PostDetails = () => {
                     "/assets/icons/profile-placeholder.svg"
                   }
                   alt="creator"
-                  className="rounded-full w-8 lg:h-8 lg:2-12 lg:h-12"
+                  className="rounded-full w-8 h-8 lg:w-12 lg:h-12"
                 />
 
                 <div className="flex flex-col">
