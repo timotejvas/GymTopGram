@@ -4,6 +4,7 @@ import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 
 import PostStats from "./PostStats";
+import Loader from "./Loader";
 
 type GridPostListProps = {
   posts?: Models.Document[];
@@ -18,7 +19,7 @@ const GridPostList = ({
 }: GridPostListProps) => {
   const { user } = useUserContext();
 
-  console.log("SEARCHED POSTS:", posts);
+  if (!posts) return <Loader />;
 
   return (
     <ul className="grid-container">
