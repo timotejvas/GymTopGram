@@ -68,7 +68,7 @@ const SignupForm = () => {
     // CHECKING FOR SESSION
     if (!session) {
       return toast({
-        title: " Pri prihlásení nastala chyba. Prosím skúsťe to znova",
+        title: "Nesprávny email alebo heslo",
       });
     }
 
